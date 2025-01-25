@@ -14,6 +14,7 @@ Time - This weekend (16 hrs max) possibly next weekend
 - Programming/ algorithm design
 
 Want: Art/ UI design
+
 Couch:
 Time - This weekend (16 hr), maybe a little during the week and next weekend
 

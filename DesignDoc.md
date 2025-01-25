@@ -56,6 +56,7 @@ Top-down (Building front + Top)
 
 
 # Enemies:
+16 x 16 asset size
 Snakes - standard
 Birds - flying
 Foxes - quick
@@ -64,6 +65,7 @@ Badger - rally/buff
 
 # Towers: 
 ## Resource: all give a flat gen, but tile resources increase it
+32 x 32 asset size
 Farm (food) - straw farm
 Power (XP) - hamster wheel - food, metal, water
 Water (water) - water dispenser

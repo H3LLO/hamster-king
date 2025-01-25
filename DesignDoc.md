@@ -1,20 +1,27 @@
 # Personal Skills:
 Ethan:
 Time - This weekend (26 hrs), 2 hours everyday this week, next weekend
+
 - Technical programming and math
 - Basic art design
 - Globals tracking
+
 Want - Hexes
-- Evan H: This weekend (16 hrs max) possibly next weekend
+
+Evan H:
+Time - This weekend (16 hrs max) possibly next weekend
 - Shitty pixel art
 - Programming/ algorithm design
+
 Want: Art/ UI design
 Couch:
 Time - This weekend (16 hr), maybe a little during the week and next weekend
+
 - Technical programing and computer algorithms
 - UI/Ux
 - Sound
 - Game Engines
+
 Want - Art AND program - towers
 
 # General design
@@ -53,6 +60,8 @@ Hamster empire
 
 # Art Direction:
 Top-down (Building front + Top)
+Buildings 32x32
+Enemies 16x16
 
 
 # Enemies:
@@ -106,4 +115,4 @@ GAME BALANCE
 # Stretch goals:
 -Wavefunction collapse tiling
 -Online scoreboard
--Sept-treeing
+-Sept/Quad-treeing

@@ -52,7 +52,9 @@ Michael transactions
 
 # Gameplay loops:
 Primary: Survive waves
+
 Secondary: Strategic Design
+
 Tertiary: Infinite growth
 
 
@@ -61,59 +63,90 @@ Hamster empire
 
 # Art Direction:
 Top-down (Building front + Top)
+
 Buildings 32x32
+
 Enemies 16x16
 
 
 # Enemies:
 16 x 16 asset size
+
 Snakes - standard
+
 Birds - flying
+
 Foxes - quick
+
 Ferrets - destruction / disable
+
 Badger - rally/buff
 
 # Towers: 
 ## Resource: all give a flat gen, but tile resources increase it
 32 x 32 asset size
+
 Farm (food) - straw farm
+
 Power (XP) - hamster wheel - food, metal, water
+
 Water (water) - water dispenser
+
 Mine (material) - wire
 
 ## Defense:
 Wall - fenced cage - wire
+
 Ranged - 2 tiles
+
 Melee (blocker units) - 1 tile - food
+
 Trap
 
 # Upgrades:
 Range increase
+
 Damage increase
+
 Health increase
+
 Speed increase
+
 Enemies explode on death (from tower)
+
 Tower explodes on death
 
 
 # What do we need to do:
 Hex grid data structure - all mechanics come after this - Ethan
+
 Enemy AI and pathfinding - boids
+
 Tower targeting systems
+
 Upgrade design and balance
+
 Trackers for resources
+
 Tower art
+
 Enemy art
+
 Tile art
+
 UI/UX art
+
 UI/UX functionality
+
 Music
+
 Sound effect
+
 GAME BALANCE
 
 
 
 # Stretch goals:
--Wavefunction collapse tiling
--Online scoreboard
--Sept/Quad-treeing
+- Wavefunction collapse tiling
+- Online scoreboard
+- Sept/Quad-treeing

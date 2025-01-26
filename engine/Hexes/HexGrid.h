@@ -1,13 +1,13 @@
 #pragma once
 #include "Coordinates.h"
-#include "HexCell.h"
 #ifndef HexGrid_H
 #define HexGrid_H
 
 namespace Hexes {
+ template<class T>
  class HexGrid {
   private:
-   HexCell* _hexArr;
+   T* _hexArr;
 
   public:
    int Rows;
@@ -17,18 +17,20 @@ namespace Hexes {
 
    // Accessors
    // Row major
-   HexCell ArrAccess(int j, int i);
-   HexCell AxialAccess(int q, int r);
-   HexCell ArrAccess(SqrCoordinate sqr);
-   HexCell AxialAccess(HexCoordinate hex);
+   T ArrAccess(int j, int i);
+   T AxialAccess(int q, int r);
+   T ArrAccess(SqrCoordinate sqr);
+   T AxialAccess(HexCoordinate hex);
 
    // Mutators
-   void ArrMutate(HexCell cell, int j, int i);
-   void AxialMutate(HexCell cell, int q, int r);
-   void ArrMutate(HexCell cell, SqrCoordinate sqr);
-   void AxialMutate(HexCell cell, HexCoordinate hex);
+   void ArrMutate(T cell, int j, int i);
+   void AxialMutate(T cell, int q, int r);
+   void ArrMutate(T cell, SqrCoordinate sqr);
+   void AxialMutate(T cell, HexCoordinate hex);
 
    void Dispose();
  };
 }
+
+#include "HexGrid.tpp"
 #endif // HexGrid_H

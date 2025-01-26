@@ -10,54 +10,55 @@ namespace Hexes {
  HexGrid<T>::HexGrid(int rows, int cols) {
   this->Rows = rows;
   this->Cols = cols;
-  _hexArr = (T *)std::malloc(rows * cols * sizeof(T));
+  _hexArr = (HexCell<T> *)std::malloc(rows * cols * sizeof(HexCell<T>));
  }
 
  // Accessors
  // Row major
  template <class T>
- T HexGrid<T>::ArrAccess(int j, int i) {
-  assert(j < this->Rows && i < this->Cols);
+ HexCell<T> HexGrid<T>::ArrAccess(int j, int i) {
+  assert(j < this->Rows);
+  assert(i < this->Cols);
   return _hexArr[j * this->Cols + i];
  }
 
  template <class T>
- T HexGrid<T>::AxialAccess(int q, int r) {
+ HexCell<T> HexGrid<T>::AxialAccess(int q, int r) {
   int i = q + (r - (r & 1)) / 2;
   int j = r;
   return ArrAccess(j, i);
  }
 
  template <class T>
- T HexGrid<T>::ArrAccess(SqrCoordinate sqr) {
+ HexCell<T> HexGrid<T>::ArrAccess(SqrCoordinate sqr) {
   return ArrAccess(sqr.y, sqr.x);
  }
 
  template <class T>
- T HexGrid<T>::AxialAccess(HexCoordinate hex) {
+ HexCell<T> HexGrid<T>::AxialAccess(HexCoordinate hex) {
   return AxialAccess(hex.q, hex.r);
  }
 
  // Mutators
  template <class T>
- void HexGrid<T>::ArrMutate(T cell, int j, int i) {
+ void HexGrid<T>::ArrMutate(HexCell<T> cell, int j, int i) {
   _hexArr[j * this->Cols + i] = cell;
  }
 
  template <class T>
- void HexGrid<T>::AxialMutate(T cell, int q, int r) {
+ void HexGrid<T>::AxialMutate(HexCell<T> cell, int q, int r) {
   int i = q + (r - (r & 1)) / 2;
   int j = r;
   ArrMutate(cell, j, i);
  }
 
  template <class T>
- void HexGrid<T>::ArrMutate(T cell, SqrCoordinate sqr) {
+ void HexGrid<T>::ArrMutate(HexCell<T> cell, SqrCoordinate sqr) {
   ArrMutate(cell, sqr.y, sqr.x);
  }
 
  template <class T>
- void HexGrid<T>::AxialMutate(T cell, HexCoordinate hex) {
+ void HexGrid<T>::AxialMutate(HexCell<T> cell, HexCoordinate hex) {
   AxialMutate(cell, hex.q, hex.r);
  }
 

@@ -1,13 +1,12 @@
 #pragma once
-//#include <string>
 #ifndef HexCell_H
 #define HexCell_H
 
 namespace Hexes {
+ template <class T>
  struct HexCell {
-  char type;
-  //std::string color;
-  //std::string sprite;
+  bool traversable = true;
+  T type;
  };
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Coordinates.h"
+#include "HexCell.h"
 #ifndef HexGrid_H
 #define HexGrid_H
 
@@ -7,7 +8,7 @@ namespace Hexes {
  template<class T>
  class HexGrid {
   private:
-   T* _hexArr;
+   HexCell<T>* _hexArr;
 
   public:
    int Rows;
@@ -17,16 +18,16 @@ namespace Hexes {
 
    // Accessors
    // Row major
-   T ArrAccess(int j, int i);
-   T AxialAccess(int q, int r);
-   T ArrAccess(SqrCoordinate sqr);
-   T AxialAccess(HexCoordinate hex);
+   HexCell<T> ArrAccess(int j, int i);
+   HexCell<T> AxialAccess(int q, int r);
+   HexCell<T> ArrAccess(SqrCoordinate sqr);
+   HexCell<T> AxialAccess(HexCoordinate hex);
 
    // Mutators
-   void ArrMutate(T cell, int j, int i);
-   void AxialMutate(T cell, int q, int r);
-   void ArrMutate(T cell, SqrCoordinate sqr);
-   void AxialMutate(T cell, HexCoordinate hex);
+   void ArrMutate(HexCell<T> cell, int j, int i);
+   void AxialMutate(HexCell<T> cell, int q, int r);
+   void ArrMutate(HexCell<T> cell, SqrCoordinate sqr);
+   void AxialMutate(HexCell<T> cell, HexCoordinate hex);
 
    void Dispose();
  };

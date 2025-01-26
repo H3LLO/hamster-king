@@ -1,5 +1,3 @@
-#include "Coordinates.h"
-
 namespace Hexes {
  SqrCoordinate::SqrCoordinate(int X, int Y) {
   this->x = X;

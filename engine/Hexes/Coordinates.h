@@ -19,4 +19,5 @@ namespace Hexes {
   SqrCoordinate HexToSqr(HexCoordinate hex);
 }
 
+#include "Coordinates.cpp"
 #endif // Coordinates_H

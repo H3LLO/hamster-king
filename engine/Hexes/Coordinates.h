@@ -3,21 +3,35 @@
 #define Coordinates_H
 
 namespace Hexes {
+ template <class T>
  struct SqrCoordinate {
-  int x, y;
+  T x, y;
 
-  SqrCoordinate(int X, int Y);
+  SqrCoordinate(T X, T Y);
+
+  SqrCoordinate<T> operator+(const SqrCoordinate<T>& obj);
+  SqrCoordinate<T> operator-(const SqrCoordinate<T>& obj);
+  SqrCoordinate<T> operator*(const T& obj);
+  SqrCoordinate<T> operator/(const T& obj);
  };
 
+ template <class T>
  struct HexCoordinate {
-  int q, r, s;
+  T q, r, s;
 
-  HexCoordinate(int Q, int R);
+  HexCoordinate(T Q, T R);
+
+  HexCoordinate<T> operator+(const HexCoordinate<T>& obj);
+  HexCoordinate<T> operator-(const HexCoordinate<T>& obj);
+  HexCoordinate<T> operator*(const T& obj);
+  HexCoordinate<T> operator/(const T& obj);
  };
 
-  HexCoordinate SqrToHex(SqrCoordinate sqr);
-  SqrCoordinate HexToSqr(HexCoordinate hex);
+ template <class T>
+ HexCoordinate<T> SqrToHex(SqrCoordinate<T> sqr);
+ template <class T>
+ SqrCoordinate<T> HexToSqr(HexCoordinate<T> hex);
 }
 
-#include "Coordinates.cpp"
+#include "Coordinates.tpp"
 #endif // Coordinates_H

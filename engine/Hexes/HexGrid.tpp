@@ -1,8 +1,7 @@
 #include "Coordinates.h"
 #include <stdlib.h>
+//#define NDEBUG //Uncomment to disable assert() or, preferably run g++ with -DNDEBUG
 #include <cassert>
-#include <iostream>
-
 #define assertm(exp, msg) assert((void(msg), exp))
 
 namespace Hexes {
@@ -30,12 +29,12 @@ namespace Hexes {
  }
 
  template <class T>
- HexCell<T> HexGrid<T>::ArrAccess(SqrCoordinate sqr) {
+ HexCell<T> HexGrid<T>::ArrAccess(SqrCoordinate<int> sqr) {
   return ArrAccess(sqr.y, sqr.x);
  }
 
  template <class T>
- HexCell<T> HexGrid<T>::AxialAccess(HexCoordinate hex) {
+ HexCell<T> HexGrid<T>::AxialAccess(HexCoordinate<int> hex) {
   return AxialAccess(hex.q, hex.r);
  }
 
@@ -53,12 +52,12 @@ namespace Hexes {
  }
 
  template <class T>
- void HexGrid<T>::ArrMutate(HexCell<T> cell, SqrCoordinate sqr) {
+ void HexGrid<T>::ArrMutate(HexCell<T> cell, SqrCoordinate<int> sqr) {
   ArrMutate(cell, sqr.y, sqr.x);
  }
 
  template <class T>
- void HexGrid<T>::AxialMutate(HexCell<T> cell, HexCoordinate hex) {
+ void HexGrid<T>::AxialMutate(HexCell<T> cell, HexCoordinate<int> hex) {
   AxialMutate(cell, hex.q, hex.r);
  }
 

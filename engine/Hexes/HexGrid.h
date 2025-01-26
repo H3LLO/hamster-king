@@ -1,8 +1,8 @@
 #pragma once
-#include "Coordinates.h"
-#include "HexCell.h"
 #ifndef HexGrid_H
 #define HexGrid_H
+#include "Coordinates.h"
+#include "HexCell.h"
 
 namespace Hexes {
  template<class T>
@@ -20,14 +20,14 @@ namespace Hexes {
    // Row major
    HexCell<T> ArrAccess(int j, int i);
    HexCell<T> AxialAccess(int q, int r);
-   HexCell<T> ArrAccess(SqrCoordinate sqr);
-   HexCell<T> AxialAccess(HexCoordinate hex);
+   HexCell<T> ArrAccess(SqrCoordinate<int> sqr);
+   HexCell<T> AxialAccess(HexCoordinate<int> hex);
 
    // Mutators
    void ArrMutate(HexCell<T> cell, int j, int i);
    void AxialMutate(HexCell<T> cell, int q, int r);
-   void ArrMutate(HexCell<T> cell, SqrCoordinate sqr);
-   void AxialMutate(HexCell<T> cell, HexCoordinate hex);
+   void ArrMutate(HexCell<T> cell, SqrCoordinate<int> sqr);
+   void AxialMutate(HexCell<T> cell, HexCoordinate<int> hex);
 
    void Dispose();
  };

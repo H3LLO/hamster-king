@@ -17,6 +17,8 @@ namespace Hexes {
   SqrCoordinate<T> operator/(const T& obj);
   template<typename U>
   friend bool operator<(const SqrCoordinate<U> &left, const SqrCoordinate<U> &right);
+  template<typename U>
+  friend bool operator==(const SqrCoordinate<U> &left, const SqrCoordinate<U> &right);
  };
 
  template <typename T>
@@ -25,6 +27,8 @@ namespace Hexes {
  inline bool operator<=(const SqrCoordinate<T> &left, const SqrCoordinate<T> &right) { return !(left > right); } 
  template <typename T>
  inline bool operator>=(const SqrCoordinate<T> &left, const SqrCoordinate<T> &right) { return !(left < right); } 
+ template <typename T>
+ inline bool operator!=(const SqrCoordinate<T> &left, const SqrCoordinate<T> &right) { return !(left == right); } 
 
  template <typename T>
  struct HexCoordinate {
@@ -40,6 +44,8 @@ namespace Hexes {
   HexCoordinate<T> operator/(const T& obj);
   template<typename U>
   friend bool operator<(const HexCoordinate<U> &left, const HexCoordinate<U> &right);
+  template<typename U>
+  friend bool operator==(const SqrCoordinate<U> &left, const SqrCoordinate<U> &right);
  };
 
  template <typename T>
@@ -48,6 +54,8 @@ namespace Hexes {
  inline bool operator<=(const HexCoordinate<T> &left, const HexCoordinate<T> &right) { return !(left > right); } 
  template <typename T>
  inline bool operator>=(const HexCoordinate<T> &left, const HexCoordinate<T> &right) { return !(left < right); } 
+ template <typename T>
+ inline bool operator==(const HexCoordinate<T> &left, const HexCoordinate<T> &right) { return !(left == right); } 
 
  template <typename T>
  HexCoordinate<T> SqrToHex(SqrCoordinate<T> sqr);

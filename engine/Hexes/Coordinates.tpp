@@ -38,6 +38,11 @@ namespace Hexes {
   return std::sqrt(left.x * left.x + left.y * left.y) < std::sqrt(right.x * right.x + right.y * right.y);
  }
 
+ template <typename U>
+ bool operator==(const SqrCoordinate<U> &left, const SqrCoordinate<U> &right) {
+  return left.x == right.x && left.y == right.y;
+ }
+
  template <typename T>
  HexCoordinate<T> SqrToHex(SqrCoordinate<T> sqr) {
   int q = sqr.x - (sqr.y - (sqr.y & 1)) / 2;
@@ -83,6 +88,11 @@ namespace Hexes {
  bool operator<(const HexCoordinate<U> &left, const HexCoordinate<U> &right) {
   return std::max(std::max(std::abs(left.q), std::abs(left.r)), std::abs(left.s))
    < std::max(std::max(std::abs(right.q), std::abs(right.r)), std::abs(right.s));
+ }
+
+ template <typename U>
+ bool operator==(const HexCoordinate<U> &left, const SqrCoordinate<U> &right) {
+  return left.q == right.q && left.r == right.r;
  }
 
  template <typename T>

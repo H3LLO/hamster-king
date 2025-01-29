@@ -1,15 +1,13 @@
 #include "Coordinates.h"
 #include <stdlib.h>
-//#define NDEBUG //Uncomment to disable assert() or, preferably run g++ with -DNDEBUG
-#include <cassert>
-#define assertm(exp, msg) assert((void(msg), exp))
+#include <iostream>
 
 namespace Hexes {
  template <class T>
  HexGrid<T>::HexGrid(int rows, int cols) {
   this->Rows = rows;
   this->Cols = cols;
-  _hexArr = (HexCell<T> *)std::malloc(rows * cols * sizeof(HexCell<T>));
+  _hexArr = (HexCell<T> *)malloc(rows * cols * sizeof(HexCell<T>));
  }
 
  // Accessors
@@ -18,6 +16,7 @@ namespace Hexes {
  HexCell<T> HexGrid<T>::ArrAccess(int j, int i) {
   assert(j < this->Rows);
   assert(i < this->Cols);
+  AccessInfo(i,j);
   return _hexArr[j * this->Cols + i];
  }
 
@@ -29,18 +28,21 @@ namespace Hexes {
  }
 
  template <class T>
- HexCell<T> HexGrid<T>::ArrAccess(SqrCoordinate<int> sqr) {
+ HexCell<T> HexGrid<T>::ArrAccess(SqrCoordinate<int> &sqr) {
   return ArrAccess(sqr.y, sqr.x);
  }
 
  template <class T>
- HexCell<T> HexGrid<T>::AxialAccess(HexCoordinate<int> hex) {
+ HexCell<T> HexGrid<T>::AxialAccess(HexCoordinate<int> &hex) {
   return AxialAccess(hex.q, hex.r);
  }
 
  // Mutators
  template <class T>
  void HexGrid<T>::ArrMutate(HexCell<T> cell, int j, int i) {
+  assert(j < this->Rows);
+  assert(i < this->Cols);
+  AccessInfo(i,j);
   _hexArr[j * this->Cols + i] = cell;
  }
 
@@ -52,17 +54,28 @@ namespace Hexes {
  }
 
  template <class T>
- void HexGrid<T>::ArrMutate(HexCell<T> cell, SqrCoordinate<int> sqr) {
+ void HexGrid<T>::ArrMutate(HexCell<T> cell, SqrCoordinate<int> &sqr) {
   ArrMutate(cell, sqr.y, sqr.x);
  }
 
  template <class T>
- void HexGrid<T>::AxialMutate(HexCell<T> cell, HexCoordinate<int> hex) {
+ void HexGrid<T>::AxialMutate(HexCell<T> cell, HexCoordinate<int> &hex) {
   AxialMutate(cell, hex.q, hex.r);
  }
 
  template <class T>
  void HexGrid<T>::Dispose() {
   std::free(_hexArr);
+ }
+
+ // Debug balogna
+ template <class T>
+ void HexGrid<T>::AccessInfo(int i, int j) {
+  if (!debug) return;
+  SqrCoordinate<int>* sqr = new SqrCoordinate(i,j);
+  HexCoordinate hex = SqrToHex(*sqr);
+  std::cout << "Accessing position (" << i << "," << j << ")/" << j * this->Cols + i;
+  std::cout << " => hex: (" << hex.q << "," << hex.r << ") ";
+  std::cout << "in an array of (" << this->Cols << "," << this->Rows << ")/" << this->Cols*this->Rows << std::endl;
  }
 }

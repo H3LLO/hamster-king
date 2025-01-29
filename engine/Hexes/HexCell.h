@@ -1,4 +1,3 @@
-#pragma once
 #ifndef HexCell_H
 #define HexCell_H
 

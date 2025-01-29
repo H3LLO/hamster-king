@@ -39,7 +39,7 @@ namespace Hexes {
  template <class T>
  T HexDistance(HexCoordinate<T> a, HexCoordinate<T> b) {
   HexCoordinate offset = a - b;
-  return std::max(std::abs(offset.q), std::abs(offset.r), std::abs(offset.s));
+  return std::max(std::max(std::abs(offset.q), std::abs(offset.r)), std::abs(offset.s));
  }
 
  template <class T>

@@ -14,9 +14,9 @@ int main(int argc, char* argv[]) {
  try {
   Hexes::HexGrid<char>* hg = new Hexes::HexGrid<char>(rows, cols);
   PopulateHexGrid(hg);
-  hg->debug = true;
+  //hg->debug = true;
   DrawStuff(hg, cols/2, rows/2, 4, false);
-  hg->debug = false;
+  //hg->debug = false;
   PrintHexGrid(hg);
   hg->Dispose();
  }
@@ -46,7 +46,7 @@ void DrawStuff(Hexes::HexGrid<char>* &hg, int x, int y, int distance, bool flipp
  std::set<Hexes::HexCoordinate<int>> uniqCells{ };
  Hexes::HexCoordinate<int>* cells = nullptr; 
  int N = 0, n;
- n = Hexes::HexFill(cells, center, distance);
+ n = Hexes::HexFill(cells, center, distance/2);
  N += n;
  if(cells == NULL || cells == nullptr) {
   throw stop_struct(100);
@@ -54,30 +54,30 @@ void DrawStuff(Hexes::HexGrid<char>* &hg, int x, int y, int distance, bool flipp
  for (int i = 0; i < n; i++) uniqCells.insert(cells[i]);
  delete[] cells;
  cells = nullptr;
- //n = Hexes::HexLine(cells, center, offset);
- //N += n;
- //if(cells == NULL || cells == nullptr) {
- // throw stop_struct(100);
- //}
- //for (int i = 0; i < n; i++) uniqCells.insert(cells[i]);
- //delete[] cells;
- //cells = nullptr;
- //n = Hexes::HexNonsense(cells, center, distance);
- //N += n;
- //if(cells == NULL || cells == nullptr) {
- // throw stop_struct(100);
- //}
- //for (int i = 0; i < n; i++) uniqCells.insert(cells[i]);
- //delete[] cells;
- //cells = nullptr;
- //n = Hexes::HexTriangleFill(cells, center, distance, !flipped);
- //N += n;
- //if(cells == NULL || cells == nullptr) {
- // throw stop_struct(100);
- //}
- //for (int i = 0; i < n; i++) uniqCells.insert(cells[i]);
- //delete[] cells;
- //cells = nullptr;
+ n = Hexes::HexLine(cells, center, offset);
+ N += n;
+ if(cells == NULL || cells == nullptr) {
+  throw stop_struct(100);
+ }
+ for (int i = 0; i < n; i++) uniqCells.insert(cells[i]);
+ delete[] cells;
+ cells = nullptr;
+ n = Hexes::HexNonsense(cells, center, distance);
+ N += n;
+ if(cells == NULL || cells == nullptr) {
+  throw stop_struct(100);
+ }
+ for (int i = 0; i < n; i++) uniqCells.insert(cells[i]);
+ delete[] cells;
+ cells = nullptr;
+ n = Hexes::HexTriangleFill(cells, center, distance, !flipped);
+ N += n;
+ if(cells == NULL || cells == nullptr) {
+  throw stop_struct(100);
+ }
+ for (int i = 0; i < n; i++) uniqCells.insert(cells[i]);
+ delete[] cells;
+ cells = nullptr;
  cell.type = '^';
  for (Hexes::HexCoordinate<int> uniqCell : uniqCells) {
   hg->AxialMutate(cell, uniqCell);

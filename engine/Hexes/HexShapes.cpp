@@ -11,7 +11,6 @@ namespace Hexes {
  int HexLine(HexCoordinate<int>* &results, const HexCoordinate<int> a, const HexCoordinate<int> b) {
   HexCoordinate<double> nudgeb = HexCoordinate<double>(b) + *epsilon;
   const int N = HexDistance(a, b);
-  std::cout << "Distance of " << N << " found" << std::endl;
   results = new HexCoordinate<int>[N];
   for (int i = 0; i < N; i++) {
    results[i] = HexRound(Lerq(HexCoordinate<double>(a), nudgeb, (double) (i+1) / (double) N));
@@ -74,16 +73,9 @@ namespace Hexes {
   int dir = up ? 1 : 5;
   int n, i = 0;
   HexCoordinate<int>* line = nullptr;
-  for (int j = 0; (std::cout << "On j loop " << j << std::endl, j < 3); j++) {
-   HexCoordinate<int> start = (j ? results[i - 1] : lcorner);
-   HexCoordinate<int> offset = (AxialDirectionVectors[j ? dir : 0] * (j == 2 ? 1 : sideLength - 1));
-   HexCoordinate<int> end = lcorner + offset;
-   std::cout << "Starting at (" << start.q << "," << start.r << ") [" << j << "]";
-   std::cout << " with an offset of (" << offset.q << "," << offset.r << ")";
-   std::cout << " and going to (" << end.q << "," << end.r << ") [" << (j ? dir : 0) << " x " << (j == 2 ? 1 : sideLength - 1) << "]" << std::endl;
-   n = HexLine(line, start, end);
-   for (int k = 0; (std::cout << "On k loop " << k << std::endl, k < n); k++) {
-    std::cout << i << "th point at (" << line[k].q << "," << line[k].r << ")" << std::endl;
+  for (int j = 0; j < 3; j++) {
+   n = HexLine(line, (j ? results[i - 1] : lcorner), lcorner + (AxialDirectionVectors[j ? dir : 0] * (j == 2 ? 1 : sideLength - 1)));
+   for (int k = 0; k < n; k++) {
     results[i++] = line[k];
    }
    delete[] line;

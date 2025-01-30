@@ -1,5 +1,5 @@
 #include "Coordinates.h"
-#include <stdlib.h>
+#include <cstdlib>
 #include <iostream>
 
 namespace Hexes {
@@ -7,16 +7,17 @@ namespace Hexes {
  HexGrid<T>::HexGrid(int rows, int cols) {
   this->Rows = rows;
   this->Cols = cols;
-  _hexArr = (HexCell<T> *)malloc(rows * cols * sizeof(HexCell<T>));
+  const int size = rows * cols;
+  _hexArr = new HexCell<T>[size];
  }
 
  // Accessors
  // Row major
  template <class T>
  HexCell<T> HexGrid<T>::ArrAccess(int j, int i) {
+  AccessInfo(i,j);
   assert(j < this->Rows);
   assert(i < this->Cols);
-  AccessInfo(i,j);
   return _hexArr[j * this->Cols + i];
  }
 
@@ -40,9 +41,9 @@ namespace Hexes {
  // Mutators
  template <class T>
  void HexGrid<T>::ArrMutate(HexCell<T> cell, int j, int i) {
+  AccessInfo(i,j);
   assert(j < this->Rows);
   assert(i < this->Cols);
-  AccessInfo(i,j);
   _hexArr[j * this->Cols + i] = cell;
  }
 
@@ -65,7 +66,7 @@ namespace Hexes {
 
  template <class T>
  void HexGrid<T>::Dispose() {
-  std::free(_hexArr);
+  delete[] _hexArr;
  }
 
  // Debug balogna

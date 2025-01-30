@@ -7,14 +7,17 @@ namespace Hexes {
  struct SqrCoordinate {
   T x, y;
 
+  SqrCoordinate();
   SqrCoordinate(T X, T Y);
   template<typename U>
   SqrCoordinate(const SqrCoordinate<U>& source);
 
-  SqrCoordinate<T> operator+(const SqrCoordinate<T> &obj);
-  SqrCoordinate<T> operator-(const SqrCoordinate<T> &obj);
-  SqrCoordinate<T> operator*(const T& obj);
-  SqrCoordinate<T> operator/(const T& obj);
+  double Magnitude() const;
+
+  SqrCoordinate<T> operator+(const SqrCoordinate<T> &obj) const;
+  SqrCoordinate<T> operator-(const SqrCoordinate<T> &obj) const;
+  SqrCoordinate<T> operator*(const T& obj) const;
+  SqrCoordinate<T> operator/(const T& obj) const;
   template<typename U>
   friend bool operator<(const SqrCoordinate<U> &left, const SqrCoordinate<U> &right);
   template<typename U>
@@ -34,14 +37,17 @@ namespace Hexes {
  struct HexCoordinate {
   T q, r, s;
 
+  HexCoordinate();
   HexCoordinate(T Q, T R);
   template <typename U>
   HexCoordinate(const HexCoordinate<U>& source);
 
-  HexCoordinate<T> operator+(const HexCoordinate<T> &obj);
-  HexCoordinate<T> operator-(const HexCoordinate<T> &obj);
-  HexCoordinate<T> operator*(const T& obj);
-  HexCoordinate<T> operator/(const T& obj);
+  double Magnitude() const;
+
+  HexCoordinate<T> operator+(const HexCoordinate<T> &obj) const;
+  HexCoordinate<T> operator-(const HexCoordinate<T> &obj) const;
+  HexCoordinate<T> operator*(const T& obj) const;
+  HexCoordinate<T> operator/(const T& obj) const;
   template<typename U>
   friend bool operator<(const HexCoordinate<U> &left, const HexCoordinate<U> &right);
   template<typename U>

@@ -100,7 +100,7 @@ namespace Hexes {
  }
 
  template <typename U>
- bool operator==(const HexCoordinate<U> &left, const SqrCoordinate<U> &right) {
+ bool operator==(const HexCoordinate<U> &left, const HexCoordinate<U> &right) {
   return left.q == right.q && left.r == right.r;
  }
 

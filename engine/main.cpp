@@ -1,5 +1,6 @@
-#include "Debug/Debug.h" //gives malloc to be used straight
-#include "Hexes/Hexes.h"
+#include "Debug.h" //gives malloc to be used straight
+#include "Hexes.h"
+#include "Drawing.h"
 #include <iostream>
 #include <set>
 
@@ -42,44 +43,16 @@ void DrawStuff(Hexes::HexGrid<char>* &hg, int x, int y, int distance, bool flipp
  cell.type = '%';
  hg->AxialMutate(cell, center);
 
- Hexes::HexCoordinate<int> offset = Hexes::HexCoordinate<int>(Hexes::HexCoordinate<double>(center) * 1.5);
- std::set<Hexes::HexCoordinate<int>> uniqCells{ };
- Hexes::HexCoordinate<int>* cells = nullptr; 
- int N = 0, n;
- n = Hexes::HexFill(cells, center, distance/2);
- N += n;
- if(cells == NULL || cells == nullptr) {
-  throw stop_struct(100);
- }
- for (int i = 0; i < n; i++) uniqCells.insert(cells[i]);
- delete[] cells;
- cells = nullptr;
- n = Hexes::HexLine(cells, center, offset);
- N += n;
- if(cells == NULL || cells == nullptr) {
-  throw stop_struct(100);
- }
- for (int i = 0; i < n; i++) uniqCells.insert(cells[i]);
- delete[] cells;
- cells = nullptr;
- n = Hexes::HexNonsense(cells, center, distance);
- N += n;
- if(cells == NULL || cells == nullptr) {
-  throw stop_struct(100);
- }
- for (int i = 0; i < n; i++) uniqCells.insert(cells[i]);
- delete[] cells;
- cells = nullptr;
- n = Hexes::HexTriangleFill(cells, center, distance, !flipped);
- N += n;
- if(cells == NULL || cells == nullptr) {
-  throw stop_struct(100);
- }
- for (int i = 0; i < n; i++) uniqCells.insert(cells[i]);
- delete[] cells;
- cells = nullptr;
+ Hexes::HexCoordinate<int> offset = Hexes::HexCoordinate<int>(Hexes::HexCoordinate<double>(center) * 0.5);
+ std::set<Hexes::HexCoordinate<int>> cells{ };
+ //Hexes::HexShape(cells, Hexes::Shape(Hexes::ShapeType::Line, center, offset));
+ //Hexes::HexShape(cells, Hexes::Shape(Hexes::ShapeType::HexagonFill, center, distance, false));
+ Hexes::HexShape(cells, Hexes::Shape(Hexes::ShapeType::CenteredTriangleFill, center, distance, false));
+ Hexes::HexShape(cells, Hexes::Shape(Hexes::ShapeType::CenteredTrianglePerimeter, offset, distance, true));
+ Hexes::ValidHexes(cells, hg);
+
  cell.type = '^';
- for (Hexes::HexCoordinate<int> uniqCell : uniqCells) {
+ for (Hexes::HexCoordinate<int> uniqCell : cells) {
   hg->AxialMutate(cell, uniqCell);
  }
 }

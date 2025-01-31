@@ -1,7 +1,5 @@
 #ifndef HexGrid_H
 #define HexGrid_H
-#include "Coordinates.h"
-#include "HexCell.h"
 
 namespace Hexes {
  template<class T>

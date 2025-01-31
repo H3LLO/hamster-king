@@ -1,7 +1,3 @@
-#include "Coordinates.h"
-#include <cstdlib>
-#include <iostream>
-
 namespace Hexes {
  template <class T>
  HexGrid<T>::HexGrid(int rows, int cols) {

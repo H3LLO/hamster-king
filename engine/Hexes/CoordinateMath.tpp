@@ -1,10 +1,3 @@
-#include "Coordinates.h"
-#include <cmath>
-#include <algorithm>
-//#define NDEBUG //Uncomment to disable assert() or, preferably run g++ with -DNDEBUG
-#include <cassert>
-#define assertm(exp, msg) assert((void(msg), exp))
-
 namespace Hexes {
  // Square maths
  template <class T>

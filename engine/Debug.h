@@ -11,7 +11,7 @@ struct stop_struct {
 void* warningMalloc(int size);
 void warningFree(void* &voidPtr);
 }
-#include "Debug.cpp"
+#include "Debug/Debug.cpp"
 #define malloc Debug::warningMalloc
 #define free Debug::warningFree
 #include <cassert>

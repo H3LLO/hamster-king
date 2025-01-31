@@ -1,6 +1,5 @@
 #ifndef Coordinates_H
 #define Coordinates_H
-#include <iostream>
 
 namespace Hexes {
  template <typename T>
@@ -51,7 +50,7 @@ namespace Hexes {
   template<typename U>
   friend bool operator<(const HexCoordinate<U> &left, const HexCoordinate<U> &right);
   template<typename U>
-  friend bool operator==(const SqrCoordinate<U> &left, const SqrCoordinate<U> &right);
+  friend bool operator==(const SqrCoordinate<U> &left, const HexCoordinate<U> &right);
  };
 
  template <typename T>
@@ -61,7 +60,7 @@ namespace Hexes {
  template <typename T>
  inline bool operator>=(const HexCoordinate<T> &left, const HexCoordinate<T> &right) { return !(left < right); } 
  template <typename T>
- inline bool operator==(const HexCoordinate<T> &left, const HexCoordinate<T> &right) { return !(left == right); } 
+ inline bool operator!=(const HexCoordinate<T> &left, const HexCoordinate<T> &right) { return !(left == right); } 
 
  template <typename T>
  HexCoordinate<T> SqrToHex(SqrCoordinate<T> sqr);
